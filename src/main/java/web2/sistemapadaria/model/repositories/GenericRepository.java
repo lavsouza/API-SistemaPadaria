@@ -3,7 +3,7 @@ package web2.sistemapadaria.model.repositories;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface GenericRepository <KEY,CLASS>{
+public interface GenericRepository <CLASS, KEY>{
 
     public void create(CLASS c)throws ClassNotFoundException, SQLException;
     public void update(CLASS c)throws ClassNotFoundException, SQLException;
