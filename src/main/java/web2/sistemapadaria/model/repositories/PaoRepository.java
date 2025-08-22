@@ -5,30 +5,31 @@ import web2.sistemapadaria.model.entities.Pao;
 import java.sql.SQLException;
 import java.util.List;
 
-public final class PaoRepository implements GenericRepository<Integer, Pao> {
+public final class PaoRepository implements GenericRepository<Pao, Integer> {
+
 
     @Override
-    public void create(Integer c) throws ClassNotFoundException, SQLException {
+    public void create(Pao c) throws ClassNotFoundException, SQLException {
 
     }
 
     @Override
-    public void update(Integer c) throws ClassNotFoundException, SQLException {
+    public void update(Pao c) throws ClassNotFoundException, SQLException {
 
     }
 
     @Override
-    public Integer read(Pao k) throws ClassNotFoundException, SQLException {
-        return 0;
+    public Pao read(Integer k) throws ClassNotFoundException, SQLException {
+        return null;
     }
 
     @Override
-    public void delete(Integer c) throws ClassNotFoundException, SQLException {
+    public void delete(Pao c) throws ClassNotFoundException, SQLException {
 
     }
 
     @Override
-    public List<Integer> readAll() throws ClassNotFoundException, SQLException {
+    public List<Pao> readAll() throws ClassNotFoundException, SQLException {
         return List.of();
     }
 }

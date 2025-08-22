@@ -5,30 +5,31 @@ import web2.sistemapadaria.model.entities.Fornada;
 import java.sql.SQLException;
 import java.util.List;
 
-public final class FornadaRepository implements GenericRepository<Integer, Fornada> {
+public final class FornadaRepository implements GenericRepository<Fornada, Integer> {
+
 
     @Override
-    public void create(Integer c) throws ClassNotFoundException, SQLException {
+    public void create(Fornada c) throws ClassNotFoundException, SQLException {
 
     }
 
     @Override
-    public void update(Integer c) throws ClassNotFoundException, SQLException {
+    public void update(Fornada c) throws ClassNotFoundException, SQLException {
 
     }
 
     @Override
-    public Integer read(Fornada k) throws ClassNotFoundException, SQLException {
-        return 0;
+    public Fornada read(Integer k) throws ClassNotFoundException, SQLException {
+        return null;
     }
 
     @Override
-    public void delete(Integer c) throws ClassNotFoundException, SQLException {
+    public void delete(Fornada c) throws ClassNotFoundException, SQLException {
 
     }
 
     @Override
-    public List<Integer> readAll() throws ClassNotFoundException, SQLException {
+    public List<Fornada> readAll() throws ClassNotFoundException, SQLException {
         return List.of();
     }
 }

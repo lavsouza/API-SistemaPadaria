@@ -5,30 +5,31 @@ import web2.sistemapadaria.model.entities.FornadaPao;
 import java.sql.SQLException;
 import java.util.List;
 
-public final class PaoFornadaRepository implements GenericRepository<Integer, FornadaPao> {
+public final class PaoFornadaRepository implements GenericRepository<FornadaPao, Integer> {
+
 
     @Override
-    public void create(Integer c) throws ClassNotFoundException, SQLException {
+    public void create(FornadaPao c) throws ClassNotFoundException, SQLException {
 
     }
 
     @Override
-    public void update(Integer c) throws ClassNotFoundException, SQLException {
+    public void update(FornadaPao c) throws ClassNotFoundException, SQLException {
 
     }
 
     @Override
-    public Integer read(FornadaPao k) throws ClassNotFoundException, SQLException {
-        return 0;
+    public FornadaPao read(Integer k) throws ClassNotFoundException, SQLException {
+        return null;
     }
 
     @Override
-    public void delete(Integer c) throws ClassNotFoundException, SQLException {
+    public void delete(FornadaPao c) throws ClassNotFoundException, SQLException {
 
     }
 
     @Override
-    public List<Integer> readAll() throws ClassNotFoundException, SQLException {
+    public List<FornadaPao> readAll() throws ClassNotFoundException, SQLException {
         return List.of();
     }
 }
