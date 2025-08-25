@@ -1,5 +1,6 @@
 package web2.sistemapadaria.model.repositories;
 
+import org.springframework.stereotype.Repository;
 import web2.sistemapadaria.model.entities.Fornada;
 import web2.sistemapadaria.model.entities.FornadaPao;
 import web2.sistemapadaria.model.entities.Pao;
@@ -9,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public final class FornadaRepository implements GenericRepository<Fornada, Integer> {
 
     @Override
@@ -118,7 +120,7 @@ public final class FornadaRepository implements GenericRepository<Fornada, Integ
                     FornadaPao fp = new FornadaPao();
                     fp.setPao(p);
                     fp.setQuantidadePao(rs.getInt("quantidade_pao"));
-
+                    fp.setHoraEntrada(Timestamp.valueOf(rs.getTimestamp("hora_entrada").toLocalDateTime()));
 
                     lista.add(fp);
                 }

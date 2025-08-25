@@ -9,24 +9,17 @@ import java.util.List;
 @Repository
 public class RepositoryFacade {
 
-    private static RepositoryFacade instance;
-    private FornadaRepository fornadaRepository;
-    private PaoFornadaRepository paoFornadaRepository;
-    private PaoRepository paoRepository;
+    private final FornadaRepository fornadaRepository;
+    private final PaoFornadaRepository paoFornadaRepository;
+    private final PaoRepository paoRepository;
 
-    private RepositoryFacade() throws ClassNotFoundException, SQLException {
-        this.fornadaRepository = new FornadaRepository();
-        this.paoFornadaRepository = new PaoFornadaRepository();
-        this.paoRepository = new PaoRepository();
+    public RepositoryFacade(FornadaRepository fornadaRepository,
+                            PaoFornadaRepository paoFornadaRepository,
+                            PaoRepository paoRepository) {
+        this.fornadaRepository = fornadaRepository;
+        this.paoFornadaRepository = paoFornadaRepository;
+        this.paoRepository = paoRepository;
     }
-
-    public static RepositoryFacade getCurrentInstance() throws SQLException, ClassNotFoundException {
-        if (instance == null) {
-            instance = new RepositoryFacade();
-        }
-        return instance;
-    }
-
 
     //METODOS FORNADA
     public void createFornada(Fornada f) throws SQLException, ClassNotFoundException {

@@ -1,10 +1,12 @@
 package web2.sistemapadaria.model.repositories;
 
+import org.springframework.stereotype.Repository;
 import web2.sistemapadaria.model.entities.FornadaPao;
 
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository
 public final class PaoFornadaRepository implements GenericRepository<FornadaPao, Integer> {
 
 

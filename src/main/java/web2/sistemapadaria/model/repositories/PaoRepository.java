@@ -1,10 +1,12 @@
 package web2.sistemapadaria.model.repositories;
 
+import org.springframework.stereotype.Repository;
 import web2.sistemapadaria.model.entities.Pao;
 
 import java.sql.SQLException;
 import java.util.List;
 
+@Repository
 public final class PaoRepository implements GenericRepository<Pao, Integer> {
 
 
