@@ -1,7 +1,9 @@
 package web2.sistemapadaria.controller;
 
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import web2.sistemapadaria.DTO.request.AdicionarAlterarPaoRequest;
+import web2.sistemapadaria.DTO.response.FornadaResponseDTO;
 import web2.sistemapadaria.model.entities.Fornada;
 import web2.sistemapadaria.model.entities.FornadaPao;
 import web2.sistemapadaria.model.entities.Pao;
@@ -9,6 +11,7 @@ import web2.sistemapadaria.service.FornadaService;
 
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @RestController
 @RequestMapping("/fornada")
@@ -52,6 +55,12 @@ public class FornadaController {
 
         FornadaPao pf = fornadaService.alterarQuantidadePaoFornada(pao, fornada, quantidade);
         return "Quantidade de pão alterada com sucesso!";
+    }
+
+    @GetMapping("/detalhar-fornada/{codFornada}")
+    public FornadaResponseDTO detalharFornada(@PathVariable int codFornada) throws SQLException, ClassNotFoundException {
+        Fornada fornada = fornadaService.readFornada(codFornada);
+        return new FornadaResponseDTO(fornada);
     }
 
 

@@ -22,6 +22,10 @@ public class FornadaService {
         return f;
     }
 
+    public Fornada readFornada(int id) throws SQLException, ClassNotFoundException {
+        return repositoryFacade.readFornada(id);
+    }
+
     public FornadaPao adicionarPao(Pao p, Fornada f, int quantidade) throws SQLException, ClassNotFoundException {
         FornadaPao pf = new FornadaPao();
         pf.setPao(p);

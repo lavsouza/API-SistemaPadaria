@@ -99,9 +99,8 @@ public class FornadaRepository implements GenericRepository<Fornada, Integer> {
     // --- busca os pães da fornada
     private List<FornadaPao> loadPaesFromFornada(int fornadaId, Connection conn) throws SQLException {
         List<FornadaPao> lista = new ArrayList<>();
-
         String sql = """
-        SELECT p.id, p.tipo, p.tempo_preparo, pf.quantidade_pao, pf.hora_entrada
+        SELECT p.id, p.tipo, p.tempo_preparo, pf.quantidade_pao, pf.hora_entrada, pf.hora_saida
         FROM pao_fornada pf
         JOIN pao p ON p.id = pf.pao
         WHERE pf.fornada = ?
@@ -116,13 +115,13 @@ public class FornadaRepository implements GenericRepository<Fornada, Integer> {
                     Pao p = new Pao();
                     p.setId(rs.getInt("id"));
                     p.setTipo(rs.getString("tipo"));
-                    p.setTempoPreparo(rs.getTime("tempo_preparo"));
 
                     // monta a relação
                     FornadaPao fp = new FornadaPao();
                     fp.setPao(p);
                     fp.setQuantidadePao(rs.getInt("quantidade_pao"));
                     fp.setHoraEntrada(Timestamp.valueOf(rs.getTimestamp("hora_entrada").toLocalDateTime()));
+                    fp.setHoraSaida(Timestamp.valueOf(rs.getTimestamp("hora_saida").toLocalDateTime()));
 
                     lista.add(fp);
                 }
