@@ -1,12 +1,12 @@
 package web2.sistemapadaria.model.entities;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Fornada {
     private int id;
-    private Time dataHora;
-    private List<Pao> paos;
+    private Timestamp dataHora;
+    private List<FornadaPao> paes;
 
     public int getId() {
         return id;
@@ -16,19 +16,19 @@ public class Fornada {
         this.id = id;
     }
 
-    public Time getDataHora() {
+    public Timestamp getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(Time dataHora) {
+    public void setDataHora(Timestamp dataHora) {
         this.dataHora = dataHora;
     }
 
-    public List<Pao> getPaos() {
-        return paos;
+    public List<FornadaPao> getPaos() {
+        return paes;
     }
 
-    public void setPaos(List<Pao> paos) {
-        this.paos = paos;
+    public void setPaes(List<FornadaPao> paes) {
+        this.paes = paes;
     }
 }
