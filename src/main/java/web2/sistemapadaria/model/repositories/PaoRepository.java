@@ -42,7 +42,18 @@ public class PaoRepository implements GenericRepository<Pao, Integer> {
 
     @Override
     public Pao read(Integer k) throws ClassNotFoundException, SQLException {
-        //TODO
+        String sql = "SELECT * FROM pao WHERE id = ?";
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);) {
+
+            ps.setInt(1, k);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return DTO(rs, conn);
+                }
+            }
+        }
         return null;
     }
 

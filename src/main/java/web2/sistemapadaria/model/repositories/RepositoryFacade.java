@@ -2,6 +2,7 @@ package web2.sistemapadaria.model.repositories;
 
 import org.springframework.stereotype.Repository;
 import web2.sistemapadaria.model.entities.Fornada;
+import web2.sistemapadaria.model.entities.FornadaPao;
 import web2.sistemapadaria.model.entities.Pao;
 
 import java.sql.SQLException;
@@ -27,6 +28,10 @@ public class RepositoryFacade {
         fornadaRepository.create(f);
     }
 
+    public void incluirPao(FornadaPao pf) throws SQLException, ClassNotFoundException {
+        paoFornadaRepository.create(pf);
+    }
+
     public void updateFornada(Fornada f) throws SQLException, ClassNotFoundException {
         fornadaRepository.update(f);
     }
@@ -47,6 +52,8 @@ public class RepositoryFacade {
     public List<Pao> listAllPaos() throws SQLException, ClassNotFoundException {
         return paoRepository.readAll();
     }
+
+
 
 
 
