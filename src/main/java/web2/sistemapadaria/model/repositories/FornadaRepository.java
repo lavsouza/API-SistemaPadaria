@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public final class FornadaRepository implements GenericRepository<Fornada, Integer> {
+public class FornadaRepository implements GenericRepository<Fornada, Integer> {
 
     @Override
-    public void create(Fornada c) throws ClassNotFoundException, SQLException {
+    public Fornada create(Fornada f) throws ClassNotFoundException, SQLException {
         String sql = "INSERT INTO fornada DEFAULT VALUES";
 
         try (Connection conn = ConnectionManager.getConnection();
@@ -24,10 +24,12 @@ public final class FornadaRepository implements GenericRepository<Fornada, Integ
 
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
-                    c.setId(rs.getInt(1));
+                    f.setId(rs.getInt(1));
+                    f.setDataHora(rs.getTimestamp("data_hora"));
                 }
             }
         }
+        return f;
     }
 
     @Override
