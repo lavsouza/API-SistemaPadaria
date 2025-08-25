@@ -2,6 +2,7 @@ package web2.sistemapadaria.model.repositories;
 
 import org.springframework.stereotype.Repository;
 import web2.sistemapadaria.model.entities.Fornada;
+import web2.sistemapadaria.model.entities.Pao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -40,6 +41,11 @@ public class RepositoryFacade {
 
     public List<Fornada> readAllFornadas() throws SQLException, ClassNotFoundException {
         return fornadaRepository.readAll();
+    }
+
+    //METODOS PAO
+    public List<Pao> listAllPaos() throws SQLException, ClassNotFoundException {
+        return paoRepository.readAll();
     }
 
 

@@ -1,7 +1,6 @@
 package web2.sistemapadaria.model.repositories;
 
 import org.springframework.stereotype.Repository;
-import web2.sistemapadaria.model.entities.Fornada;
 import web2.sistemapadaria.model.entities.FornadaPao;
 
 import java.sql.SQLException;
@@ -12,7 +11,7 @@ public class PaoFornadaRepository implements GenericRepository<FornadaPao, Integ
 
 
     @Override
-    public Fornada create(FornadaPao c) throws ClassNotFoundException, SQLException {
+    public FornadaPao create(FornadaPao c) throws ClassNotFoundException, SQLException {
 
         return null;
     }

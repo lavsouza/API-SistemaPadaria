@@ -24,7 +24,7 @@ public class Fornada {
         this.dataHora = dataHora;
     }
 
-    public List<FornadaPao> getPaos() {
+    public List<FornadaPao> getPaes() {
         return paes;
     }
 
