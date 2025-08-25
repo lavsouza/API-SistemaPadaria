@@ -1,7 +1,7 @@
 package web2.sistemapadaria.controller;
 
 import org.springframework.web.bind.annotation.*;
-import web2.sistemapadaria.DTO.request.AdicionarPaoRequest;
+import web2.sistemapadaria.DTO.request.AdicionarAlterarPaoRequest;
 import web2.sistemapadaria.model.entities.Fornada;
 import web2.sistemapadaria.model.entities.FornadaPao;
 import web2.sistemapadaria.model.entities.Pao;
@@ -27,7 +27,7 @@ public class FornadaController {
     }
 
     @PostMapping("/adicionar-pao")
-    public String adicionarPao(@RequestBody AdicionarPaoRequest request) throws SQLException, ClassNotFoundException {
+    public String adicionarPao(@RequestBody AdicionarAlterarPaoRequest request) throws SQLException, ClassNotFoundException {
         Pao pao = new Pao();
         pao.setId(request.getIdPao());
 
@@ -39,4 +39,20 @@ public class FornadaController {
         FornadaPao pf = fornadaService.adicionarPao(pao, fornada, quantidade);
         return "Pão: " + pf.getPao().getTipo() + " incluido com sucesso na fornada: " + pf.getFornada().getId();
     }
+
+    @PutMapping("/alterar-quantidade")
+    public String alterarQuantidadePao(@RequestBody AdicionarAlterarPaoRequest request) throws SQLException, ClassNotFoundException {
+        Pao pao = new Pao();
+        pao.setId(request.getIdPao());
+
+        Fornada fornada = new Fornada();
+        fornada.setId(request.getIdFornada());
+
+        int quantidade = request.getQuantidade();
+
+        FornadaPao pf = fornadaService.alterarQuantidadePaoFornada(pao, fornada, quantidade);
+        return "Quantidade de pão alterada com sucesso!";
+    }
+
+
 }

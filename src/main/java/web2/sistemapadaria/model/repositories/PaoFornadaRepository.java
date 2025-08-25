@@ -57,8 +57,16 @@ public class PaoFornadaRepository implements GenericRepository<FornadaPao, Integ
     }
 
     @Override
-    public void update(FornadaPao c) throws ClassNotFoundException, SQLException {
+    public void update(FornadaPao pf) throws ClassNotFoundException, SQLException {
+        String sql = "UPDATE pao_fornada SET quantidade_pao = ? WHERE pao = ? AND fornada = ?";
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
+            ps.setInt(1, pf.getQuantidadePao());
+            ps.setInt(2, pf.getPao().getId());
+            ps.setInt(3, pf.getFornada().getId());
+            ps.executeUpdate();
+        }
     }
 
     @Override

@@ -32,6 +32,10 @@ public class RepositoryFacade {
         paoFornadaRepository.create(pf);
     }
 
+    public void alterarQuantidadePaoFornada(FornadaPao pf) throws SQLException, ClassNotFoundException {
+        paoFornadaRepository.update(pf);
+    }
+
     public void updateFornada(Fornada f) throws SQLException, ClassNotFoundException {
         fornadaRepository.update(f);
     }

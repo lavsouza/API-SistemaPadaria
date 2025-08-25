@@ -1,6 +1,6 @@
 package web2.sistemapadaria.DTO.request;
 
-public class AdicionarPaoRequest {
+public class AdicionarAlterarPaoRequest {
     private int idPao;
     private int idFornada;
     private int quantidade;

@@ -30,4 +30,13 @@ public class FornadaService {
         repositoryFacade.incluirPao(pf);
         return pf;
     }
+
+    public FornadaPao alterarQuantidadePaoFornada(Pao p, Fornada f, int quantidade) throws SQLException, ClassNotFoundException {
+        FornadaPao pf = new FornadaPao();
+        pf.setPao(p);
+        pf.setFornada(f);
+        pf.setQuantidadePao(quantidade);
+        repositoryFacade.alterarQuantidadePaoFornada(pf);
+        return pf;
+    }
 }
