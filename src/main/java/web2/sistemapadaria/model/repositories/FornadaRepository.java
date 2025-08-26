@@ -42,7 +42,7 @@ public class FornadaRepository implements GenericRepository<Fornada, Integer> {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return DTO(rs, conn);
+                    return DTODetalhes(rs, conn);
                 }
             }
         }
@@ -82,17 +82,24 @@ public class FornadaRepository implements GenericRepository<Fornada, Integer> {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                fornadas.add(DTO(rs, conn));
+                fornadas.add(DTOSimples(rs, conn));
             }
         }
         return fornadas;
     }
 
-    private Fornada DTO(ResultSet rs, Connection conn) throws SQLException {
+    private Fornada DTODetalhes(ResultSet rs, Connection conn) throws SQLException {
         Fornada f = new Fornada();
         f.setId(rs.getInt("id"));
         f.setDataHora(rs.getTimestamp("data_hora"));
         f.setPaes(loadPaesFromFornada(f.getId(), conn));
+        return f;
+    }
+
+    private Fornada DTOSimples(ResultSet rs, Connection conn) throws SQLException {
+        Fornada f = new Fornada();
+        f.setId(rs.getInt("id"));
+        f.setDataHora(rs.getTimestamp("data_hora"));
         return f;
     }
 

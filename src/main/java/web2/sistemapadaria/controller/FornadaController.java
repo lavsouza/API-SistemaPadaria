@@ -63,5 +63,17 @@ public class FornadaController {
         return new FornadaResponseDTO(fornada);
     }
 
+    @GetMapping("/listar-fornadas")
+    public List<Fornada> listarFornadas() throws SQLException, ClassNotFoundException {
+        List<Fornada> fornadas = fornadaService.readAllFornadas();
+        return fornadas;
+    }
+
+    @DeleteMapping("/excluir/{codigo}")
+    public String excluirFornada(@PathVariable int codigo) throws SQLException, ClassNotFoundException {
+        fornadaService.excluirFornada(codigo);
+        return "Fornada excluida com sucesso!";
+    }
+
 
 }

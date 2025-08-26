@@ -7,6 +7,7 @@ import web2.sistemapadaria.model.entities.Pao;
 import web2.sistemapadaria.model.repositories.RepositoryFacade;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 public class FornadaService {
@@ -24,6 +25,19 @@ public class FornadaService {
 
     public Fornada readFornada(int id) throws SQLException, ClassNotFoundException {
         return repositoryFacade.readFornada(id);
+    }
+
+    public List<Fornada> readAllFornadas() throws SQLException, ClassNotFoundException {
+        return repositoryFacade.readAllFornadas();
+    }
+
+    public void excluirFornada(int id) throws SQLException, ClassNotFoundException {
+        FornadaPao pf = new FornadaPao();
+        Fornada f = new Fornada();
+        f.setId(id);
+        pf.setFornada(f);
+        repositoryFacade.deletePaoFornada(pf);
+        repositoryFacade.deleteFornada(f);
     }
 
     public FornadaPao adicionarPao(Pao p, Fornada f, int quantidade) throws SQLException, ClassNotFoundException {

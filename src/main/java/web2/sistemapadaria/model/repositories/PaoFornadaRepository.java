@@ -75,8 +75,14 @@ public class PaoFornadaRepository implements GenericRepository<FornadaPao, Integ
     }
 
     @Override
-    public void delete(FornadaPao c) throws ClassNotFoundException, SQLException {
+    public void delete(FornadaPao pf) throws ClassNotFoundException, SQLException {
+        String sql = "DELETE FROM pao_fornada WHERE fornada = ?";
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
+            ps.setInt(1, pf.getFornada().getId());
+            ps.executeUpdate();
+        }
     }
 
     @Override

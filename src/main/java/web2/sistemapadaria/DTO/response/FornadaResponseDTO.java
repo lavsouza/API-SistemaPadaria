@@ -9,15 +9,14 @@ import java.util.stream.Collectors;
 import web2.sistemapadaria.model.entities.Fornada;
 
 public class FornadaResponseDTO {
-    private int id;
+    private int idFornada;
     private String dataHora;
     private List<FornadaPaoResponseDTO> paes;
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    // construtor que recebe a entidade
     public FornadaResponseDTO(Fornada fornada) {
-        this.id = fornada.getId();
+        this.idFornada = fornada.getId();
 
         if (fornada.getDataHora() != null) {
             this.dataHora = formatTimestamp(fornada.getDataHora());
@@ -34,12 +33,12 @@ public class FornadaResponseDTO {
         return ldt.format(FORMATTER);
     }
 
-    public int getId() {
-        return id;
+    public int getIdFornada() {
+        return idFornada;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdFornada(int idFornada) {
+        this.idFornada = this.idFornada;
     }
 
     public String getDataHora() {
