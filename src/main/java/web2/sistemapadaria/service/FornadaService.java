@@ -35,6 +35,12 @@ public class FornadaService {
         return repositoryFacade.readAllFornadas();
     }
 
+    public List<Fornada> readAllFornadasAtivas() throws SQLException, ClassNotFoundException {
+        return repositoryFacade.readAllFornadas().stream()
+                .filter(f -> f.getPaes() != null && !f.getPaes().isEmpty())
+                .toList();
+    }
+
     public void excluirFornada(int id) throws SQLException, ClassNotFoundException {
         FornadaPao pf = new FornadaPao();
         Fornada f = new Fornada();

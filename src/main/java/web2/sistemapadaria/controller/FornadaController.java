@@ -1,7 +1,6 @@
 package web2.sistemapadaria.controller;
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import web2.sistemapadaria.DTO.request.AdicionarAlterarPaoRequest;
 import web2.sistemapadaria.DTO.response.FornadaResponseDTO;
 import web2.sistemapadaria.model.entities.Fornada;
@@ -10,7 +9,6 @@ import web2.sistemapadaria.model.entities.Pao;
 import web2.sistemapadaria.service.FornadaService;
 
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,6 +72,14 @@ public class FornadaController {
     @GetMapping("/listar-fornadas")
     public List<FornadaResponseDTO> listarFornadas() throws SQLException, ClassNotFoundException {
         return fornadaService.readAllFornadas()
+                .stream()
+                .map(FornadaResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/listar-fornadas-ativas")
+    public List<FornadaResponseDTO> listarFornadasAtivas() throws SQLException, ClassNotFoundException {
+        return fornadaService.readAllFornadasAtivas()
                 .stream()
                 .map(FornadaResponseDTO::new)
                 .collect(Collectors.toList());
