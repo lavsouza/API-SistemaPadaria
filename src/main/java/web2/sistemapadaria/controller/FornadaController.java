@@ -12,6 +12,7 @@ import web2.sistemapadaria.service.FornadaService;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/fornada")
@@ -23,10 +24,9 @@ public class FornadaController {
     }
 
     @PostMapping("/criar")
-    public String criarFornada() throws Exception {
+    public FornadaResponseDTO criarFornada() throws Exception {
         Fornada f = fornadaService.criarFornada();
-        return "Fornada " + f.getId() + " criada com sucesso ás: " + f.getDataHora().toLocalDateTime()
-                .format(DateTimeFormatter.ofPattern("HH:mm"));
+        return new FornadaResponseDTO(f);
     }
 
     @PostMapping("/adicionar-pao")
@@ -63,10 +63,20 @@ public class FornadaController {
         return new FornadaResponseDTO(fornada);
     }
 
+    @GetMapping("/detalhar-fornada-pao/{codPao}")
+    public List<FornadaResponseDTO> buscarFornadaPorPao(@PathVariable int codPao) throws SQLException, ClassNotFoundException {
+        return fornadaService.buscarFornadaPorPao(codPao)
+                .stream()
+                .map(FornadaResponseDTO::new)
+                .collect(Collectors.toList());
+    }
+
     @GetMapping("/listar-fornadas")
-    public List<Fornada> listarFornadas() throws SQLException, ClassNotFoundException {
-        List<Fornada> fornadas = fornadaService.readAllFornadas();
-        return fornadas;
+    public List<FornadaResponseDTO> listarFornadas() throws SQLException, ClassNotFoundException {
+        return fornadaService.readAllFornadas()
+                .stream()
+                .map(FornadaResponseDTO::new)
+                .collect(Collectors.toList());
     }
 
     @DeleteMapping("/excluir/{codigo}")
@@ -74,6 +84,5 @@ public class FornadaController {
         fornadaService.excluirFornada(codigo);
         return "Fornada excluida com sucesso!";
     }
-
 
 }

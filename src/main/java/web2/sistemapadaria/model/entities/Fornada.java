@@ -1,12 +1,13 @@
 package web2.sistemapadaria.model.entities;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Fornada {
     private int id;
     private Timestamp dataHora;
-    private List<FornadaPao> paes;
+    private List<FornadaPao> paes = new ArrayList<>();
 
     public int getId() {
         return id;

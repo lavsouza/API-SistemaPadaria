@@ -28,16 +28,16 @@ public class RepositoryFacade {
         fornadaRepository.create(f);
     }
 
-    public void incluirPao(FornadaPao pf) throws SQLException, ClassNotFoundException {
+    public Fornada readFornada(int id) throws SQLException, ClassNotFoundException {
+        return fornadaRepository.read(id);
+    }
+
+    public void incluirPaoFornada(FornadaPao pf) throws SQLException, ClassNotFoundException {
         paoFornadaRepository.create(pf);
     }
 
     public void alterarQuantidadePaoFornada(FornadaPao pf) throws SQLException, ClassNotFoundException {
         paoFornadaRepository.update(pf);
-    }
-
-    public Fornada readFornada(int id) throws SQLException, ClassNotFoundException {
-        return fornadaRepository.read(id);
     }
 
     public void deleteFornada(Fornada f) throws SQLException, ClassNotFoundException {
@@ -50,6 +50,10 @@ public class RepositoryFacade {
 
     public List<Fornada> readAllFornadas() throws SQLException, ClassNotFoundException {
         return fornadaRepository.readAll();
+    }
+
+    public List<Fornada> buscarFornadaPorPao(int id) throws SQLException, ClassNotFoundException {
+        return fornadaRepository.buscarFornadaPorPao(id);
     }
 
 

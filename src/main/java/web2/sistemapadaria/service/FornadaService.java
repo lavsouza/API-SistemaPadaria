@@ -27,6 +27,10 @@ public class FornadaService {
         return repositoryFacade.readFornada(id);
     }
 
+    public List<Fornada> buscarFornadaPorPao(int id) throws SQLException, ClassNotFoundException {
+        return repositoryFacade.buscarFornadaPorPao(id);
+    }
+
     public List<Fornada> readAllFornadas() throws SQLException, ClassNotFoundException {
         return repositoryFacade.readAllFornadas();
     }
@@ -45,7 +49,7 @@ public class FornadaService {
         pf.setPao(p);
         pf.setFornada(f);
         pf.setQuantidadePao(quantidade);
-        repositoryFacade.incluirPao(pf);
+        repositoryFacade.incluirPaoFornada(pf);
         return pf;
     }
 

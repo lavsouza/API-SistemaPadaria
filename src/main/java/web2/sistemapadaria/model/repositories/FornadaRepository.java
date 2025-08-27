@@ -42,7 +42,7 @@ public class FornadaRepository implements GenericRepository<Fornada, Integer> {
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    return DTODetalhes(rs, conn);
+                    return DTO(rs, conn);
                 }
             }
         }
@@ -82,24 +82,17 @@ public class FornadaRepository implements GenericRepository<Fornada, Integer> {
              ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
-                fornadas.add(DTOSimples(rs, conn));
+                fornadas.add(DTO(rs, conn));
             }
         }
         return fornadas;
     }
 
-    private Fornada DTODetalhes(ResultSet rs, Connection conn) throws SQLException {
+    private Fornada DTO(ResultSet rs, Connection conn) throws SQLException {
         Fornada f = new Fornada();
         f.setId(rs.getInt("id"));
         f.setDataHora(rs.getTimestamp("data_hora"));
         f.setPaes(loadPaesFromFornada(f.getId(), conn));
-        return f;
-    }
-
-    private Fornada DTOSimples(ResultSet rs, Connection conn) throws SQLException {
-        Fornada f = new Fornada();
-        f.setId(rs.getInt("id"));
-        f.setDataHora(rs.getTimestamp("data_hora"));
         return f;
     }
 
@@ -135,5 +128,28 @@ public class FornadaRepository implements GenericRepository<Fornada, Integer> {
             }
         }
         return lista;
+    }
+
+    public List<Fornada> buscarFornadaPorPao(int idPao) throws SQLException, ClassNotFoundException {
+        List<Fornada> fornadas = new ArrayList<>();
+        String sql = """
+        SELECT f.* 
+        FROM fornada f
+        JOIN pao_fornada pf ON pf.fornada = f.id
+        WHERE pf.pao = ?
+    """;
+
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, idPao);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    fornadas.add(DTO(rs, conn));
+                }
+            }
+        }
+        return fornadas;
     }
 }
