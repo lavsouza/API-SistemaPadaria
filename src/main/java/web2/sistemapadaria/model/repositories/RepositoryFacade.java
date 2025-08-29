@@ -44,8 +44,12 @@ public class RepositoryFacade {
         fornadaRepository.delete(f);
     }
 
-    public void deletePaoFornada(FornadaPao pf) throws SQLException, ClassNotFoundException {
+    public void deleteFornadaPao(FornadaPao pf) throws SQLException, ClassNotFoundException {
         paoFornadaRepository.delete(pf);
+    }
+
+    public void deletePaoFornada(FornadaPao pf) throws SQLException, ClassNotFoundException {
+        paoFornadaRepository.deletePao(pf);
     }
 
     public List<Fornada> readAllFornadas() throws SQLException, ClassNotFoundException {

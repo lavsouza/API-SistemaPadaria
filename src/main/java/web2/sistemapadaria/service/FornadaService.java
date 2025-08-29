@@ -54,7 +54,7 @@ public class FornadaService {
         Fornada f = new Fornada();
         f.setId(id);
         pf.setFornada(f);
-        repositoryFacade.deletePaoFornada(pf);
+        repositoryFacade.deleteFornadaPao(pf);
         repositoryFacade.deleteFornada(f);
     }
 

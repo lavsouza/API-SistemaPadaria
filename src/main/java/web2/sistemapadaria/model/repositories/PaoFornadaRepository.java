@@ -88,6 +88,17 @@ public class PaoFornadaRepository implements GenericRepository<FornadaPao, Integ
         }
     }
 
+    public void deletePao(FornadaPao pf) throws ClassNotFoundException, SQLException {
+        String sql = "DELETE FROM pao_fornada WHERE fornada = ? AND pao = ?";
+        try (Connection conn = ConnectionManager.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, pf.getFornada().getId());
+            ps.setInt(2, pf.getPao().getId());
+            ps.executeUpdate();
+        }
+    }
+
     @Override
     public List<FornadaPao> readAll() throws ClassNotFoundException, SQLException {
         return List.of();
