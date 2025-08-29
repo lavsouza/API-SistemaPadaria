@@ -7,7 +7,9 @@ import web2.sistemapadaria.util.ConnectionManager;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 @Repository
 public class PaoFornadaRepository implements GenericRepository<FornadaPao, Integer> {
@@ -21,8 +23,9 @@ public class PaoFornadaRepository implements GenericRepository<FornadaPao, Integ
 
     @Override
     public FornadaPao create(FornadaPao pf) throws ClassNotFoundException, SQLException {
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("America/Sao_Paulo"));
 
-    String sql = "INSERT INTO pao_fornada (pao, fornada, quantidade_pao) VALUES (?,?,?) RETURNING hora_entrada";
+        String sql = "INSERT INTO pao_fornada (pao, fornada, quantidade_pao) VALUES (?,?,?) RETURNING hora_entrada";
 
         try (Connection conn = ConnectionManager.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -33,11 +36,11 @@ public class PaoFornadaRepository implements GenericRepository<FornadaPao, Integ
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    pf.setHoraEntrada(rs.getTimestamp("hora_entrada"));
+                    pf.setHoraEntrada(rs.getTimestamp("hora_entrada", cal));
 
                     Pao pao = paoRepository.read(pf.getPao().getId());
-                    long segundos = pao.getTempoPreparo().getTime() / 1000;
                     pf.setPao(pao);
+                    long segundos = pao.getTempoPreparo().toLocalTime().toSecondOfDay();
 
                     Timestamp horaSaidaCalculada = new Timestamp(pf.getHoraEntrada().getTime() + segundos * 1000);
                     pf.setHoraSaida(horaSaidaCalculada);

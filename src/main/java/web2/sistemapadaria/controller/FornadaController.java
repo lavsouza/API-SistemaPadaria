@@ -77,7 +77,7 @@ public class FornadaController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/listar-fornadas-ativas")
+    @GetMapping("/listar-fornadas-dia")
     public List<FornadaResponseDTO> listarFornadasAtivas() throws SQLException, ClassNotFoundException {
         return fornadaService.readAllFornadasAtivas()
                 .stream()

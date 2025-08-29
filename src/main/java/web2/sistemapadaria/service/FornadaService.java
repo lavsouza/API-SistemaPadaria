@@ -7,6 +7,7 @@ import web2.sistemapadaria.model.entities.Pao;
 import web2.sistemapadaria.model.repositories.RepositoryFacade;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -36,8 +37,15 @@ public class FornadaService {
     }
 
     public List<Fornada> readAllFornadasAtivas() throws SQLException, ClassNotFoundException {
+        LocalDate hoje = LocalDate.now();
+
         return repositoryFacade.readAllFornadas().stream()
                 .filter(f -> f.getPaes() != null && !f.getPaes().isEmpty())
+                .filter(f -> {
+                    if (f.getDataHora() == null) return false;
+                    LocalDate dataFornada = f.getDataHora().toLocalDateTime().toLocalDate();
+                    return dataFornada.equals(hoje);
+                })
                 .toList();
     }
 
