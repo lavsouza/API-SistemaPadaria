@@ -13,8 +13,8 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**") // Libera todos os endpoints
-                        .allowedOrigins("http://localhost:5500/") // URL do seu front-end Vue
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:5500/")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);
